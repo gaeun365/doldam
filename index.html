@@ -16,13 +16,11 @@
         .header { height: 100px; padding: 50px 20px 10px; display: flex; align-items: center; justify-content: center; background: white; border-bottom: 0.5px solid #D1D1D6; box-sizing: border-box; font-weight: bold; position: relative; }
         .back-btn { position: absolute; left: 20px; bottom: 15px; cursor: pointer; color: var(--point-blue); font-size: 20px; }
 
-        /* 홈 메뉴 리스트 */
         .home-content { padding: 20px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
         .menu-item { background: white; padding: 18px; border-radius: 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer; transition: 0.2s; }
         .menu-item:active { transform: scale(0.98); }
         .icon-box { width: 45px; height: 45px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; }
 
-        /* 채팅 UI */
         .chat-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #E5E5EA; }
         .bubble { max-width: 80%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.5; }
         .bubble.ai { background: white; align-self: flex-start; border-bottom-left-radius: 2px; }
@@ -31,11 +29,9 @@
         .input-area { height: 80px; background: white; display: flex; align-items: center; padding: 0 15px 20px; border-top: 0.5px solid #D1D1D6; }
         .msg-input { flex: 1; height: 40px; border: 1px solid #D1D1D6; border-radius: 20px; padding: 0 15px; outline: none; }
         
-        /* 북동쪽(45도) 메시지 전송 화살표 */
         .send-btn { width: 40px; height: 40px; background: var(--point-blue); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-left: 10px; cursor: pointer; }
         .send-btn i { color: white; font-size: 20px; transform: rotate(-45deg); margin-left: -3px; }
 
-        /* 🚨 번쩍번쩍 경고창 & 순차 체크 */
         .warning-overlay { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 2000; display: none; flex-direction: column; justify-content: center; 
@@ -51,7 +47,6 @@
         .check-item.show { opacity: 1; }
         .check-item i { color: #34C759; }
 
-        /* 사후 케어 카드 */
         .care-card { background: white; color: #333; padding: 25px; border-radius: 25px; width: 100%; display: none; text-align: left; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
 
         .text-screen { padding: 25px; overflow-y: auto; line-height: 1.8; }
@@ -92,85 +87,63 @@
     </div>
 
     <div id="love" class="screen">
-        <div id="guide" class="screen">
-        <div class="header">
-            <i class="fas fa-chevron-left back-btn" onclick="showScreen('home')"></i>
-            <span>이용방법</span>
+        <div class="header"><i class="fas fa-chevron-left back-btn" onclick="showScreen('home')"></i><span>AI 연애 상담소</span></div>
+        <div class="chat-content" id="loveBox"><div class="bubble ai">가은 님, 마음 속 깊은 이야기를 들려주세요. 제가 가은 님의 편이 되어 드릴게요.</div></div>
+        <div class="input-area">
+            <input type="text" id="loveInput" class="msg-input" placeholder="연애 고민 털어놓기...">
+            <div class="send-btn" onclick="handleLoveChat()"><i class="fas fa-paper-plane"></i></div>
         </div>
+    </div>
+
+    <div id="guide" class="screen">
+        <div class="header"><i class="fas fa-chevron-left back-btn" onclick="showScreen('home')"></i><span>이용방법</span></div>
         <div class="text-screen">
             <h2 style="color:var(--guide-green); text-align:center;">📖 돌담 사용 가이드</h2>
             <p style="text-align:center; color:#666; font-size:13px; margin-bottom:20px;">당신의 안전을 위한 4단계 보호 시스템</p>
-
             <div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; border-left:5px solid var(--point-blue);">
                 <h4 style="margin:0; color:var(--point-blue);"><i class="fas fa-keyboard"></i> STEP 1. AI 키보드 활성화</h4>
-                [cite_start]<p style="margin:5px 0 0; font-size:13px; color:#444;">돌담 키보드를 권한 승인하면, AI가 모든 대화의 위험 맥락을 실시간으로 읽기 시작합니다. [cite: 33, 262]</p>
+                <p style="margin:5px 0 0; font-size:13px; color:#444;">돌담 키보드를 권한 승인하면, AI가 모든 대화의 위험 맥락을 실시간으로 읽기 시작합니다. [cite: 33, 262]</p>
             </div>
-
             <div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; border-left:5px solid #FF9500;">
                 <h4 style="margin:0; color:#FF9500;"><i class="fas fa-search"></i> STEP 2. 실시간 위험 진단</h4>
-                [cite_start]<p style="margin:5px 0 0; font-size:13px; color:#444;">대화 중 '위기 조성'이나 '금전 요구' 패턴이 포착되면 화면에 즉시 위험 경고와 근거가 제시됩니다. [cite: 84, 172]</p>
+                <p style="margin:5px 0 0; font-size:13px; color:#444;">대화 중 '위기 조성'이나 '금전 요구' 패턴이 포착되면 화면에 즉시 위험 경고와 근거가 제시됩니다. [cite: 84, 172]</p>
             </div>
-
             <div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; border-left:5px solid var(--alert-red);">
                 <h4 style="margin:0; color:var(--alert-red);"><i class="fas fa-hand-holding-usd"></i> STEP 3. 금융 사고 원천 차단</h4>
-                [cite_start]<p style="margin:5px 0 0; font-size:13px; color:#444;">확정적 사기 정황 시, 모든 뱅킹 앱의 실행을 일시 중단하고 가족에게 비상 알림을 전송합니다. [cite: 242, 266]</p>
+                <p style="margin:5px 0 0; font-size:13px; color:#444;">확정적 사기 정황 시, 모든 뱅킹 앱의 실행을 일시 중단하고 가족에게 비상 알림을 전송합니다. [cite: 242, 266]</p>
             </div>
-
             <div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; border-left:5px solid var(--soft-purple);">
                 <h4 style="margin:0; color:var(--soft-purple);"><i class="fas fa-heartbeat"></i> STEP 4. 전문가 사후 케어</h4>
-                [cite_start]<p style="margin:5px 0 0; font-size:13px; color:#444;">위험 상황 종료 후, 무너진 자존감 회복을 위해 전문 상담사와 피해자 커뮤니티를 즉시 매칭합니다. [cite: 141, 155]</p>
+                <p style="margin:5px 0 0; font-size:13px; color:#444;">위험 상황 종료 후, 무너진 자존감 회복을 위해 전문 상담사와 피해자 커뮤니티를 즉시 매칭합니다. [cite: 141, 155]</p>
             </div>
-
-            [cite_start]<p style="text-align:center; font-size:12px; color:#999; margin-top:20px;">※ 돌담은 사용자의 사생활을 보호하며 오직 안전만을 위해 작동합니다. [cite: 41]</p>
+            <p style="text-align:center; font-size:12px; color:#999; margin-top:20px;">※ 돌담은 사용자의 사생활을 보호하며 오직 안전만을 위해 작동합니다. [cite: 41]</p>
         </div>
     </div>
-        
+
     <div id="biz" class="screen">
         <div class="header"><i class="fas fa-chevron-left back-btn" onclick="showScreen('home')"></i><span>사업 및 회사 소개</span></div>
         <div class="text-screen">
-    <h2 style="color:var(--point-blue); text-align:center;">🛡️ (주)돌담 가디언즈</h2>
-    <p style="text-align:center; font-weight:bold; color:#555;">"사랑이라는 이름의 사기를 막는 따뜻한 기술"</p>
-    
-    <hr style="border:0; height:1px; background:#ddd; margin:20px 0;">
-
-    <h3>🚀 기업 비전</h3>
-    <p>우리는 <b>데이터 분석</b>과 <b>심리학</b>을 결합하여 로맨스 스캠으로부터 소중한 일상을 보호합니다. 단순히 범죄 차단을 넘어 피해자의 무너진 마음까지 케어하는 <b>토탈 세이프티 솔루션</b>입니다.</p>
-
-    <h3>✨ 핵심 서비스: LoveGuard</h3>
-    <ul>
-        <li>🔍 <b>실시간 맥락 분석:</b> [친밀감 → 위기 → 금전요구] 3단계 패턴 탐지</li>
-        <li>🚨 <b>지능형 경고:</b> 번쩍이는 레드 UI로 사용자의 이성적 판단 유도</li>
-        <li>🏥 <b>마음 회복 케어:</b> 피해자 커뮤니티 및 상담사 즉시 매칭</li>
-    </ul>
-
-    <h3>💰 비즈니스 모델 (수익 구조)</h3>
-    <table style="width:100%; border-collapse:collapse; font-size:12px; background:white; border-radius:10px; overflow:hidden;">
-        <tr style="background:var(--point-blue); color:white;">
-            <th style="padding:10px;">모델</th>
-            <th style="padding:10px;">대상</th>
-            <th style="padding:10px;">수익 구조</th>
-        </tr>
-        <tr>
-            <td style="padding:10px; border-bottom:1px solid #eee;"><b>B2B</b></td>
-            <td style="padding:10px; border-bottom:1px solid #eee;">데이팅 앱</td>
-            <td style="padding:10px; border-bottom:1px solid #eee;">보안 SDK 판매</td>
-        </tr>
-        <tr>
-            <td style="padding:10px; border-bottom:1px solid #eee;"><b>B2B2C</b></td>
-            <td style="padding:10px; border-bottom:1px solid #eee;">시중 은행</td>
-            <td style="padding:10px; border-bottom:1px solid #eee;">안심 이체 수수료</td>
-        </tr>
-        <tr>
-            <td style="padding:10px;"><b>B2C</b></td>
-            <td style="padding:10px;">개인/가족</td>
-            <td style="padding:10px;">월 5,900원 구독</td>
-        </tr>
-    </table>
-
-    <h3>💪 팀 역량: HeartShield</h3>
-    <p>🏢 <b>핵심 역량:</b> 사회문제 해결 중심의 서비스 기획력 보유</p>
-    <p>💻 <b>기술 철학:</b> 개인정보를 보호하는 <b>Palantir(팔란티어)</b>식 통합 분석 지향</p>
-</div>
+            <h2 style="color:var(--point-blue); text-align:center;">🛡️ (주)돌담 가디언즈</h2>
+            <p style="text-align:center; font-weight:bold; color:#555;">"사랑이라는 이름의 사기를 막는 따뜻한 기술"</p>
+            <hr style="border:0; height:1px; background:#ddd; margin:20px 0;">
+            <h3>🚀 기업 비전</h3>
+            <p>우리는 <b>데이터 분석</b>과 <b>심리학</b>을 결합하여 로맨스 스캠으로부터 소중한 일상을 보호합니다. 단순히 범죄 차단을 넘어 피해자의 무너진 마음까지 케어하는 <b>토탈 세이프티 솔루션</b>입니다.</p>
+            <h3>✨ 핵심 서비스: LoveGuard</h3>
+            <ul>
+                <li>🔍 <b>실시간 맥락 분석:</b> [친밀감 → 위기 → 금전요구] 3단계 패턴 탐지</li>
+                <li>🚨 <b>지능형 경고:</b> 번쩍이는 레드 UI로 사용자의 이성적 판단 유도</li>
+                <li>🏥 <b>마음 회복 케어:</b> 피해자 커뮤니티 및 상담사 즉시 매칭</li>
+            </ul>
+            <h3>💰 비즈니스 모델</h3>
+            <table style="width:100%; border-collapse:collapse; font-size:12px; background:white; border-radius:10px; overflow:hidden;">
+                <tr style="background:var(--point-blue); color:white;">
+                    <th style="padding:10px;">모델</th><th style="padding:10px;">대상</th><th style="padding:10px;">수익 구조</th>
+                </tr>
+                <tr><td style="padding:10px;">B2B</td><td style="padding:10px;">데이팅 앱</td><td style="padding:10px;">보안 SDK 판매</td></tr>
+                <tr><td style="padding:10px;">B2B2C</td><td style="padding:10px;">시중 은행</td><td style="padding:10px;">안심 이체 수수료</td></tr>
+                <tr><td style="padding:10px;">B2C</td><td style="padding:10px;">개인/가족</td><td style="padding:10px;">월 5,900원 구독</td></tr>
+            </table>
+        </div>
     </div>
 
     <div id="alertOverlay" class="warning-overlay">
@@ -182,7 +155,6 @@
             <div id="step3" class="check-item"><i class="fas fa-check-circle"></i> <span>모든 뱅킹 앱 실행 차단</span></div>
             <button onclick="showAfterCare()" style="margin-top:30px; background:white; color:var(--alert-red); border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer;">상황 해제 및 케어</button>
         </div>
-        
         <div id="careCard" class="care-card">
             <h3 style="margin:0 0 15px;"><i class="fas fa-hand-holding-heart" style="color:var(--alert-red)"></i> 마음 회복 솔루션</h3>
             <p id="careMsg" style="font-size:15px; color:#444;"></p>
@@ -197,7 +169,6 @@
         document.getElementById(id).classList.add('active');
     }
 
-    // 1. 가해자 대화 (3단계 흐름)
     let chatStep = 0;
     function handleScamChat() {
         const input = document.getElementById('chatInput');
@@ -221,7 +192,6 @@
         }, 1200);
     }
 
-    // 2. 경고창 실행 (번쩍임 + 순차 체크)
     function triggerAlert() {
         document.getElementById('alertOverlay').style.display = 'flex';
         setTimeout(() => document.getElementById('step1').classList.add('show'), 500);
@@ -229,34 +199,30 @@
         setTimeout(() => document.getElementById('step3').classList.add('show'), 1900);
     }
 
-    // 3. 사후 케어 (랜덤)
     function showAfterCare() {
         document.getElementById('alarmSection').style.display = 'none';
         const card = document.getElementById('careCard');
         const msg = document.getElementById('careMsg');
         card.style.display = 'block';
-
         const solutions = [
-            "<strong>[피해자 카페 연결]</strong> '돌담 피해자 모임'에 접속하여 비슷한 사례의 분들과 소통하며 마음을 추슬러 보세요.",
-            "<strong>[심리 치료사 연결]</strong> 전문 상담사와 1:1 익명 채팅을 연결해 드립니다. 지금 바로 대화를 시작하세요.",
-            "<strong>[자살 방지 긴급 지원]</strong> 지금 마음이 너무 힘드시다면 24시간 열려있는 1393 혹은 저희 전담 가드너에게 도움을 요청하세요."
+            "<strong>[피해자 카페 연결]</strong> '돌담 피해자 모임'에 접속하여 소통하며 마음을 추슬러 보세요.",
+            "<strong>[심리 치료사 연결]</strong> 전문 상담사와 1:1 익명 채팅을 연결해 드립니다.",
+            "<strong>[긴급 지원]</strong> 너무 힘드시다면 24시간 열려있는 1393으로 도움을 청하세요."
         ];
         msg.innerHTML = solutions[Math.floor(Math.random() * solutions.length)];
     }
 
-    // 4. 진단소 로직
     function startDiagnosis() {
         const input = document.getElementById('diagInput').value;
         const res = document.getElementById('diagResult');
         res.style.display = 'block';
         if(input.includes("돈") || input.includes("송금") || input.includes("빌려")) {
-            res.innerHTML = "🚨 <strong>진단: 사기 위험도 98%</strong><br>전형적인 로맨스 스캠의 금전 갈취 단계입니다. 즉시 차단하시기 바랍니다.";
+            res.innerHTML = "🚨 <strong>진단: 사기 위험도 98%</strong><br>전형적인 로맨스 스캠 패턴입니다. 즉시 차단하시기 바랍니다.";
         } else {
-            res.innerHTML = "🔍 <strong>진단: 주의 필요</strong><br>직접적인 사기 패턴은 아니나, 지속적인 신뢰 형성을 통한 가스라이팅을 주의하세요.";
+            res.innerHTML = "🔍 <strong>진단: 주의 필요</strong><br>직접적인 사기 패턴은 아니나 주의가 필요합니다.";
         }
     }
 
-    // 5. 연애 상담소
     function handleLoveChat() {
         const input = document.getElementById('loveInput');
         const box = document.getElementById('loveBox');
@@ -264,14 +230,10 @@
         box.innerHTML += `<div class="bubble me">${input.value}</div>`;
         input.value = '';
         setTimeout(() => {
-            box.innerHTML += `<div class="bubble ai">당신은 충분히 사랑받을 자격이 있는 사람이에요. 돌담이 당신의 자존감을 지켜드릴게요.</div>`;
+            box.innerHTML += `<div class="bubble ai">당신은 충분히 사랑받을 자격이 있는 사람이에요. 돌담이 곁에 있을게요.</div>`;
             box.scrollTop = box.scrollHeight;
         }, 1000);
     }
 </script>
 </body>
 </html>
-
-
-
-
